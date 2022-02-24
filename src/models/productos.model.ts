@@ -18,13 +18,9 @@ const ProductoSchema = new Schema({
         type: String,
         required: [true, 'El estado es obligatorio. Valores posibles: nuevo/usado'],
         enum: ['nuevo', 'usado']
-    },
-    createdAt: {
-        type: Date
-    },
-    updatedAt: {
-        type: Date
     }
+}, {
+    timestamps: { createdAt: true, updatedAt: true }
 })
 
 export default model<IProduct>('Product', ProductoSchema);

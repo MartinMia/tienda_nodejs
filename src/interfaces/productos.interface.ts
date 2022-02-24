@@ -5,7 +5,7 @@ export default interface IProduct extends Document {
   nombre: string;
   precio: string;
   stock: string;
-  estado:any;
+  estado: string;
   createdAt: Date;
   updatedAt: Date;
 };

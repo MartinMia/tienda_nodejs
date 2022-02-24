@@ -47,8 +47,6 @@ export const store = async (req: Request, res: Response) => {
             precio: data.precio,
             stock: data.stock,
             estado: data.estado,
-            createdAt: new Date,
-            updatedAt: new Date
         });
 
         await producto.save();
@@ -74,7 +72,6 @@ export const update = async (req: Request, res: Response) => {
         if (data.precio) producto.precio = data.precio;
         if (data.stock) producto.stock = data.stock;
         if (data.estado) producto.estado = data.estado;
-        producto.updatedAt = new Date;
 
         await producto.save();
         
