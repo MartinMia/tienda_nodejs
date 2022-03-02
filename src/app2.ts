@@ -14,8 +14,7 @@ class Server {
 
   constructor () {
     this.app = express()
-    this.port = process.env.PORT || ''
-    console.log(process.env.PORT)
+    this.port = process.env.PORT || '3000'
 
     // métodos iniciales
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -25,13 +24,7 @@ class Server {
   }
 
   async dbConnection () {
-    try {
       await configureDatabase()
-      // await db.sync()
-      console.log('Database online')
-    } catch (error: any) {
-      throw new Error(error)
-    }
   }
 
   middlewares () {
