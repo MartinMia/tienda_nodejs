@@ -86,7 +86,7 @@ export const destroy = async (req: Request, res: Response) => {
     const id = req?.params?.id;
     try {
         let producto = await Producto.findByIdAndDelete(id);
-        console.log(producto);
+
         if (!producto)
             res.status(404).send(`No se encontró el película con id: ${id}`);
         else

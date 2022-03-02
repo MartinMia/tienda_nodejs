@@ -16,7 +16,7 @@ const ProductoSchema = new Schema({
     },
     estado: {
         type: String,
-        required: [true, 'El estado es obligatorio. Valores posibles: nuevo/usado'],
+        required: [true, 'El estado es obligatorio. Valores posibles: nuevo/usado.'],
         enum: ['nuevo', 'usado']
     }
 }, {

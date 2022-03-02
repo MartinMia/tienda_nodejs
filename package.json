@@ -4,7 +4,8 @@
     "description": "Folcademy Verano 2022 Curso Backend",
     "main": "index.ts",
     "scripts": {
-        "start": "concurrently 'tsc -w' 'nodemon dist/src/server.js'"
+        "start": "concurrently 'tsc -w' 'nodemon dist/src/server.js'",
+        "startAlt": "concurrently 'tsc -w' 'nodemon dist/src/server2.js'"
     },
     "keywords": [
         "curso",
