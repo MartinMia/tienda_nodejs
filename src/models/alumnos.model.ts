@@ -4,12 +4,12 @@ import IAlumnos from '../interfaces/alumnos.interface';
 const AlumnosSchema = new Schema({
   dni: {
     type: Number,
-    required: [true, 'El email es obligatorio'],
+    required: [true, 'El dni es obligatorio'],
     unique: true
   },
   carrera: {
     type: String,
-    required: [true, 'La contraseña es obligatoria']
+    required: [true, 'La carrera es obligatoria']
   },
   estado: {
     type: Boolean,
