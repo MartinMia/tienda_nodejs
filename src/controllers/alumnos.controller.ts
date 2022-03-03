@@ -9,7 +9,9 @@ export const index = async (req: Request, res: Response) => {
     try {
         let alumnos = await Alumno.find()
             // .populate('persona_id', 'email nombreCompleto contraseña');
-            .populate({ path: 'persona_id', select: ['id', 'nombreCompleto', 'email'] }); 
+            .populate({ path: 'persona_id', select: ['id', 'nombreCompleto', 'email'] })
+            // .populate('materias', 'id nombre duracion');
+            .populate({ path: 'materias', select: ['id', 'nombre', 'duracion'] }); 
 
         res.json(alumnos);
     } catch (error) {
