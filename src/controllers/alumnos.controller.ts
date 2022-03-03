@@ -8,7 +8,8 @@ export const index = async (req: Request, res: Response) => {
 
     try {
         let alumnos = await Alumno.find()
-                                  .populate('persona');
+            // .populate('persona_id', 'email nombreCompleto contraseña');
+            .populate({ path: 'persona_id', select: ['id', 'nombreCompleto', 'email'] }); 
 
         res.json(alumnos);
     } catch (error) {
