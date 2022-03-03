@@ -1,13 +1,12 @@
 import { ObjectId } from 'mongodb';
 import { Document } from 'mongoose'
 
-export default interface IAlumnos extends Document {
+export default interface IMateria extends Document {
   _id: string;
-  dni: number;
-  carrera: string;
+  nombre: number;
+  duracion: string;
   estado: boolean;
-  persona_id: ObjectId;
-  materias: Array<string>;
+  alumnos: Array<string>;
   createdAt: Date;
   updatedAt: Date;
 };

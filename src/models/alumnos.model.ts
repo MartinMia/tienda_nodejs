@@ -19,7 +19,11 @@ const AlumnosSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Persona',
     required: true
-  }
+  },
+  materias: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Materia',
+  }]
 }, {
   timestamps: { createdAt: true, updatedAt: true }
 })
