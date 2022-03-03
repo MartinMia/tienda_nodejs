@@ -3,12 +3,16 @@ import cors from 'cors';
 import helmet from 'helmet';
 // import 'dotenv/config';
 import { configureDatabase } from '../database/connection'
+import AlumnosRoutes from '../src/routes/alumnos.routes'
+import PersonasRoutes from '../src/routes/personas.routes'
 import ProductosRoutes from '../src/routes/productos.routes'
 
 class Server {
   private readonly app: Application
   private readonly port: string
   private readonly apiPaths = {
+    alumnos: '/api/alumnos',
+    personas: '/api/personas',
     productos: '/api/productos'
   }
 
@@ -24,7 +28,7 @@ class Server {
   }
 
   async dbConnection () {
-      await configureDatabase()
+    await configureDatabase()
   }
 
   middlewares () {
@@ -37,6 +41,8 @@ class Server {
   }
 
   routes () {
+    this.app.use(this.apiPaths.alumnos, AlumnosRoutes)
+    this.app.use(this.apiPaths.personas, PersonasRoutes)
     this.app.use(this.apiPaths.productos, ProductosRoutes)
   }
 
