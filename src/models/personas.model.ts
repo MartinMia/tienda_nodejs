@@ -8,7 +8,7 @@ const PersonaSchema = new Schema({
   },
   email: {
     type: String,
-    required: [true, 'El email es obligatorio'],
+    required: [true, 'El email es obligatorio y único'],
     unique: true
   },
   contraseña: {

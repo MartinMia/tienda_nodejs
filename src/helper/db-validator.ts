@@ -8,6 +8,13 @@ export const validPersonaId = async (personaId: number) => {
     throw new Error(`La persona con id ${personaId} no está registrada.`)
   }
 }
+export const validPersonaEmail = async (personaEmail: string) => {
+  const persona = await Persona.findOne({ email: personaEmail});
+
+  if (persona !== null) {
+    throw new Error(`La persona con email ${personaEmail} está registrada. Ingrese otro email`)
+  }
+}
 
 export const validProductoId = async (productoId: number) => {
   const producto = await Producto.findById(productoId)

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import IPersonas from "../interfaces/personas.interface";
 import Persona from "../models/personas.model";
+import bcrypt from 'bcrypt';
 
 // Get all resources
 export const index = async (req: Request, res: Response) => {
@@ -34,11 +35,12 @@ export const show = async (req: Request, res: Response) => {
 export const store = async (req: Request, res: Response) => {
     try {
         const { ...data } = req.body;
+        const password = await bcrypt.hash(data.contraseña, 5);
 
         const persona: IPersonas = new Persona({
             nombreCompleto: data.nombreCompleto,
             email: data.email,
-            contraseña: data.contraseña,
+            contraseña: password,
             telefono: data.telefono,
             rol: data.rol,
         });
@@ -87,6 +89,34 @@ export const destroy = async (req: Request, res: Response) => {
             res.status(404).send(`No se encontró la persona con el id: ${id}`);
         else
             res.status(200).json(persona);
+    } catch (error) {
+        res.status(500).send('Algo salió mal.');
+    }
+};
+
+// Login a person
+export const login = async (req: Request, res: Response) => {
+    // email y contraseña
+    try {
+        
+        const { ...data } = req.body;
+        let persona = await Persona.findOne({ email: data.email});
+
+        if (!persona)
+            res.status(404).send(`No se encontró la persona con el email: ${data.email}`);
+        else{
+            // comparar contraseña de la persona con la contraseña pasada por el body
+            const sonIguales = await bcrypt.compare(data.contraseña, persona.contraseña);
+            console.log(sonIguales);
+
+            if (sonIguales) {
+
+                res.status(200).json('ok');
+            } else {
+
+                res.status(401).json('datos incorrectos');
+            }
+        }
     } catch (error) {
         res.status(500).send('Algo salió mal.');
     }
