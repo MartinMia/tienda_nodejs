@@ -7,6 +7,8 @@ export default interface IVenta extends Document {
   precio_total: number;
   estado: string;
   persona_id: ObjectId;
+  producto_id:ObjectId;
+  productos: Array<string>;
   createdAt: Date;
   updatedAt: Date;
 };
