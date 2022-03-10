@@ -6,6 +6,7 @@ import { configureDatabase } from '../database/connection'
 import AlumnosRoutes from '../src/routes/alumnos.routes'
 import PersonasRoutes from '../src/routes/personas.routes'
 import ProductosRoutes from '../src/routes/productos.routes'
+import VentasRoutes from '../src/routes/ventas.routes'
 
 class Server {
   private readonly app: Application
@@ -13,7 +14,8 @@ class Server {
   private readonly apiPaths = {
     alumnos: '/api/alumnos',
     personas: '/api/personas',
-    productos: '/api/productos'
+    productos: '/api/productos',
+    ventas: '/api/ventas'
   }
 
   constructor () {
@@ -44,6 +46,7 @@ class Server {
     this.app.use(this.apiPaths.alumnos, AlumnosRoutes)
     this.app.use(this.apiPaths.personas, PersonasRoutes)
     this.app.use(this.apiPaths.productos, ProductosRoutes)
+    this.app.use(this.apiPaths.ventas, VentasRoutes)
   }
 
   listen () {

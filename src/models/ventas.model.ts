@@ -20,14 +20,18 @@ const VentaSchema = new Schema({
     persona_id: {
         type: Schema.Types.ObjectId,
         ref: 'Persona',
+      },
+      producto_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Producto',
         required: true
       },
       productos: [{
         type: Schema.Types.ObjectId,
-        ref: 'Producto',
+        ref: 'Productos',
       }]
 }, {
     timestamps: { createdAt: true, updatedAt: true }
 })
 
-export default model<IVenta>('Product', VentaSchema);
+export default model<IVenta>('Venta', VentaSchema);

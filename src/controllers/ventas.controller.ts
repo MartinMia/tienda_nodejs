@@ -8,21 +8,20 @@ export const index = async (req: Request, res: Response) => {
     // agregar filtros
 
     try {
-        const { ...data } = req.query; 
-        let filters = { ...data };
+        const { ...data } = req.body; 
         
-        if (data.estado) {
-            filters = { ...filters, estado: {$regex: data.estado, $options: 'i'} }
-        }
+        
+        const venta: IVenta = new Venta({
+            forma_de_pago: data.forma_de_pago,
+            estado: data.estado,
+        });
 
-        let ventas = await Venta
-            .find(filters)
-            
-            .populate({ path: 'productos', select: ['id', 'nombre', 'estado'] }); 
+        await venta.save();
 
-        res.json(ventas);
+        res.status(200).json(venta);
     } catch (error) {
-        res.status(500).send('Algo salió mal');
+        console.log(error);
+        res.status(500).send('Algo salió mal.');
     }
 };
 
@@ -49,6 +48,7 @@ export const store = async (req: Request, res: Response) => {
         const venta: IVenta = new Venta({
             forma_de_pago:data.forma_de_pago,
             estado: data.estado,
+            
         });
 
         await venta.save();
@@ -70,8 +70,8 @@ export const update = async (req: Request, res: Response) => {
         if (!venta)
             return res.status(404).send(`No se encontró la venta con id: ${id}`);
         
+        if (data.forma_de_pago) venta.forma_de_pago = data.forma_de_pago;    
         if (data.estado) venta.estado = data.estado;
-       
 
         await venta.save();
         
