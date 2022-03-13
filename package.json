@@ -6,7 +6,8 @@
     "scripts": {
         "start": "tsc-watch --onSuccess \"nodemon dist/src/server.js\"",
         "startAlt": "tsc-watch --onSuccess \"nodemon dist/src/server2.js\"",
-        "build": "tsc"
+        "build": "tsc",
+        "heroku": "tsc && node dist/src/app.js"
     },
     "keywords": [
         "curso",
