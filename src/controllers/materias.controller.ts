@@ -69,7 +69,7 @@ export const update = async (req: Request, res: Response) => {
         let materia = await Materia.findById(id);
 
         if (!materia)
-            return res.status(404).send(`No se encontró el película con id: ${id}`);
+            return res.status(404).send(`No se encontró la materia con id: ${id}`);
         
         if (data.nombre) materia.nombre = data.nombre;
         if (data.duracion) materia.duracion = data.duracion;

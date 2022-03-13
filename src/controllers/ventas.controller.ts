@@ -7,21 +7,13 @@ import Venta from "../models/ventas.model";
 export const index = async (req: Request, res: Response) => {
     // agregar filtros
 
+   
     try {
-        const { ...data } = req.body; 
-        
-        
-        const venta: IVenta = new Venta({
-            forma_de_pago: data.forma_de_pago,
-            estado: data.estado,
-        });
+        let ventas = await Venta.find();
 
-        await venta.save();
-
-        res.status(200).json(venta);
+        res.json(ventas);
     } catch (error) {
-        console.log(error);
-        res.status(500).send('Algo salió mal.');
+        res.status(500).send('Algo salió mal');
     }
 };
 
@@ -32,7 +24,7 @@ export const show = async (req: Request, res: Response) => {
         let venta = await Venta.findById(id);
 
         if (!venta)
-            res.status(404).send(`No se encontró la materia con id: ${id}`);
+            res.status(404).send(`No se encontró la venta con id: ${id}`);
         else
             res.json(venta);
     } catch (error) {
@@ -47,6 +39,7 @@ export const store = async (req: Request, res: Response) => {
 
         const venta: IVenta = new Venta({
             forma_de_pago:data.forma_de_pago,
+            precio_total:data.precio_total,
             estado: data.estado,
             
         });
@@ -70,7 +63,8 @@ export const update = async (req: Request, res: Response) => {
         if (!venta)
             return res.status(404).send(`No se encontró la venta con id: ${id}`);
         
-        if (data.forma_de_pago) venta.forma_de_pago = data.forma_de_pago;    
+        if (data.forma_de_pago) venta.forma_de_pago = data.forma_de_pago;
+        if (data.precio_total) venta.precio_total = data.precio_total;    
         if (data.estado) venta.estado = data.estado;
 
         await venta.save();
@@ -152,4 +146,3 @@ export const borrarVenta = async (req: Request, res: Response) => {
     }
 };
 
-//en vez de producto, persona?
