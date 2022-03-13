@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import cors from 'cors';
 import helmet from 'helmet';
 // import 'dotenv/config';
 import { configureDatabase } from '../database/connection'
@@ -34,7 +35,7 @@ class Server {
 
   middlewares () {
     // CORS
-    //this.app.use(cors())
+    this.app.use(cors())
     // Helmet
     this.app.use(helmet())
     // Lectura del Body
