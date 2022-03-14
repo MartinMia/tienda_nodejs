@@ -4,10 +4,10 @@
     "description": "Folcademy Verano 2022 Curso Backend",
     "main": "index.ts",
     "scripts": {
-        "start": "tsc-watch --onSuccess \"nodemon dist/src/server.js\"",
-        "startAlt": "tsc-watch --onSuccess \"nodemon dist/src/server2.js\"",
-        "build": "tsc",
-        "heroku": "tsc && node dist/src/app.js"
+        "start": "tsc && node dist/src/server.js",
+        "local": "tsc-watch --onSuccess \"nodemon dist/src/server.js\"",
+        "localAlt": "tsc-watch --onSuccess \"nodemon dist/src/server2.js\"",
+        "build": "tsc"
     },
     "keywords": [
         "curso",
